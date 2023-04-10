@@ -11,7 +11,7 @@ public class CameraRotation : MonoBehaviour
 
     [SerializeField] private bool _cameraOnPosition = false;
 
-    private bool _select;
+    private bool _rotate;
     private Vector2 _cursorDirection;
 
     private void Awake()
@@ -28,7 +28,7 @@ public class CameraRotation : MonoBehaviour
 
     private void HandleInput()
     {
-        if (!_select) return;
+        if (!_rotate) return;
         _targetAngle += _cursorDirection.x * _rotationSpeed;
     }
 
@@ -43,14 +43,14 @@ public class CameraRotation : MonoBehaviour
         }
     }
 
-    private void OnSelect(InputValue value)
+    private void OnRotate(InputValue value)
     {
-        SelectInput(value.isPressed);
+        RotateInput(value.isPressed);
     }
 
-    private void SelectInput(bool newSelectState)
+    private void RotateInput(bool newRotateState)
     {
-        _select = newSelectState;
+        _rotate = newRotateState;
     }
 
     private void OnCursorDirection(InputValue value)
