@@ -19,7 +19,7 @@ public class ObjectPlacer : MonoBehaviour
             _placedGameObjects[gameObjectIndex] == null) 
             return;
 
-         Destroy(_placedGameObjects[gameObjectIndex]);
+        Destroy(_placedGameObjects[gameObjectIndex]);
 
         _placedGameObjects[gameObjectIndex] = null;
     }

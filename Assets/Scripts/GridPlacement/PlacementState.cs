@@ -44,17 +44,19 @@ public class PlacementState : IBuildingState
     {
         if (!CheckPlacementValidity(gridPosition, _selectedObjectIndex)) return;
 
-        int index = _objectPlacer.PlaceObject(_database.ObjectsData[_selectedObjectIndex].Prefab, _grid.CellToWorld(gridPosition));
-
+        int index = _objectPlacer.PlaceObject(_database.ObjectsData[_selectedObjectIndex].Prefab, 
+            _grid.CellToWorld(gridPosition));
 
         GridData selectedData = _database.ObjectsData[_selectedObjectIndex].ID == 0 ? _floorData : _furnitureData;
-        selectedData.AddObjectAt(gridPosition, _database.ObjectsData[_selectedObjectIndex].Size, _database.ObjectsData[_selectedObjectIndex].ID, index);
+        selectedData.AddObjectAt(gridPosition, _database.ObjectsData[_selectedObjectIndex].Size,
+            _database.ObjectsData[_selectedObjectIndex].ID, index);
         _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), false);
     }
 
     public void UpdateState(Vector3Int gridPosition)
     {
-        _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), CheckPlacementValidity(gridPosition, _selectedObjectIndex));
+        _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), 
+            CheckPlacementValidity(gridPosition, _selectedObjectIndex));
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)

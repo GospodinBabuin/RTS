@@ -39,7 +39,6 @@ public class PlacementSystem : MonoBehaviour
             _buildingState.UpdateState(gridPosition);
             _lastDetectedPosition = gridPosition;
         }
-
     }
 
     public void StartPlacement(int ID)
