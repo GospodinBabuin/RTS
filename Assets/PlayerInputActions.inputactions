@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "Camera",
             "id": "3fa05aa9-1f0e-440b-aefd-09705fff47f3",
             "actions": [
                 {
@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Select",
-                    "type": "Button",
-                    "id": "0ce7944e-2ff4-4a82-bec0-b3d850d57a22",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "Rotate",
@@ -49,15 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Exit",
-                    "type": "Button",
-                    "id": "4221b889-3410-458c-a652-5a966fdadb67",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -118,17 +100,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2bc13beb-cf4b-496d-83c5-b3aecaa07b84",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "48dff513-00d8-4b6f-8869-c64464f25f18",
                     "path": "<Pointer>/delta",
                     "interactions": "",
@@ -159,15 +130,52 @@
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Building",
+            "id": "0366dde8-37a5-4435-9a04-4060867c17cc",
+            "actions": [
+                {
+                    "name": "ConfirmAction",
+                    "type": "Button",
+                    "id": "ce676806-25c6-40c3-b69e-487ea5a72029",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "CancelAction",
+                    "type": "Button",
+                    "id": "54c4c362-ab45-4b4c-850d-ed2de30bca82",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "dd436f1b-10e1-47af-8d2d-c29ba96ed3b7",
+                    "id": "ddf6d25d-7d53-4ea4-bb0c-2aee207f535d",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Exit",
+                    "action": "CancelAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef7941c3-7b61-416f-a2ba-9bdcb68afe78",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
