@@ -11,12 +11,16 @@ namespace GridPlacement
         private Vector3 _lastPosition;
         [SerializeField] private LayerMask placementLayerMask;
 
+        private PlacementSystem _placementSystem;
+
         public event Action OnClicked; 
         public event Action OnExit; 
 
         private void Awake()
         {
             _camera = Camera.main;
+
+            _placementSystem = transform.parent.GetComponentInChildren<PlacementSystem>();
         }
 
         public Vector3 GetSelectedMapPosition()
@@ -42,6 +46,11 @@ namespace GridPlacement
         private void OnCancelAction()
         {
             OnExit?.Invoke();
+        }
+        
+        private void OnRemoveBuilding()
+        {
+            _placementSystem.StartRemoving();
         }
     }
 }

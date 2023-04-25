@@ -1,16 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPlacer : MonoBehaviour
+namespace GridPlacement
 {
-    private List<GameObject> _placedBuildings = new List<GameObject>();
-
-    public int PlaceObject(GameObject prefab, Vector3 position)
+    public class ObjectPlacer : MonoBehaviour
     {
-        GameObject newBuilding = Instantiate(prefab);
-        newBuilding.transform.position = position;
-        _placedBuildings.Add(newBuilding);
-        return _placedBuildings.Count - 1;
+        [SerializeField] private List<GameObject> placedBuildings = new List<GameObject>();
+
+        public int PlaceObject(GameObject prefab, Vector3 position)
+        {
+            GameObject newBuilding = Instantiate(prefab);
+            newBuilding.transform.position = position;
+            placedBuildings.Add(newBuilding);
+            return placedBuildings.Count - 1;
+        }
+
+        public void RemoveObjectAy(int gameObjectIndex)
+        {
+            if (placedBuildings.Count <= gameObjectIndex
+                || placedBuildings[gameObjectIndex] == null)
+                return;
+            
+            Destroy(placedBuildings[gameObjectIndex]);
+            placedBuildings[gameObjectIndex] = null;
+        }
     }
 }
