@@ -11,16 +11,18 @@ namespace GridPlacement
         private PreviewSystem _previewSystem;
         private ObjectsDatabaseSO _database;
         private GridData _buildingData;
+        private GridData _massData;
         private ObjectPlacer _objectPlacer;
 
         public PlacementState(int id, Grid grid, PreviewSystem previewSystem,
-            ObjectsDatabaseSO database, GridData buildingData, ObjectPlacer objectPlacer)
+            ObjectsDatabaseSO database, GridData buildingData, GridData massData, ObjectPlacer objectPlacer)
         {
             _id = id;
             _grid = grid;
             _previewSystem = previewSystem;
             _database = database;
             _buildingData = buildingData;
+            _massData = massData;
             _objectPlacer = objectPlacer;
             
             _selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == id);
@@ -48,7 +50,11 @@ namespace GridPlacement
             int index = _objectPlacer.PlaceObject(_database.objectsData[_selectedObjectIndex].Prefab,
                 _grid.CellToWorld(gridPosition));
 
-            _buildingData.AddObjectAt(gridPosition, 
+            GridData selectedData =
+                _database.objectsData[_selectedObjectIndex].ID == 16 ? 
+                    _massData : _buildingData;
+            
+            selectedData.AddObjectAt(gridPosition, 
                 _database.objectsData[_selectedObjectIndex].Size,
                 _database.objectsData[_selectedObjectIndex].ID, 
                 index);
@@ -58,7 +64,17 @@ namespace GridPlacement
         
         private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
         {
-            return _buildingData.CanPlaceObjectAt(gridPosition, _database.objectsData[selectedObjectIndex].Size);
+            if (_database.objectsData[selectedObjectIndex].ID == 0)
+            {
+                return _massData.CanPlaceMassExtractorAt(gridPosition, _database.objectsData[selectedObjectIndex].Size) && 
+                        _buildingData.CanPlaceObjectAt(gridPosition, _database.objectsData[selectedObjectIndex].Size);
+            }
+            else
+            {
+                return _buildingData.CanPlaceObjectAt(gridPosition, _database.objectsData[selectedObjectIndex].Size) && 
+                       _massData.CanPlaceObjectAt(gridPosition, _database.objectsData[selectedObjectIndex].Size);
+
+            }
         }
 
         public void UpdateState(Vector3Int gridPosition)

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9132357668418741472}
   - component: {fileID: 9132357668418741473}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: Button (Legacy) (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9132357668949869864}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -126,7 +126,8 @@ MonoBehaviour:
         m_MethodName: SpawnUnit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 3049796617130582417, guid: 9560dd54ab8ab0d41a8ee057d2a1c478,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -393,7 +394,8 @@ MonoBehaviour:
         m_MethodName: SpawnUnit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 7348057453300986480, guid: e0c97a56e6f1e6240a18d1d73886f9b4,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -431,10 +433,10 @@ RectTransform:
   m_Children:
   - {fileID: 9132357668743603460}
   - {fileID: 9132357669016536571}
-  - {fileID: 9132357668418741474}
+  - {fileID: 9132357670275772140}
   - {fileID: 9132357670008911833}
   - {fileID: 9132357669181922833}
-  - {fileID: 9132357670275772140}
+  - {fileID: 9132357668418741474}
   m_Father: {fileID: 9132357669712172807}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -809,7 +811,8 @@ MonoBehaviour:
         m_MethodName: SpawnUnit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 4641279379937375252, guid: 2bc18102f88700340a2e009095cb292a,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1057,7 +1060,8 @@ MonoBehaviour:
         m_MethodName: SpawnUnit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 5934031178726573792, guid: 59512961138b7f94e8f69c9af202387f,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1166,7 +1170,7 @@ GameObject:
   - component: {fileID: 9132357670275772130}
   - component: {fileID: 9132357670275772131}
   m_Layer: 5
-  m_Name: Button (Legacy) (5)
+  m_Name: Button (Legacy) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1185,7 +1189,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9132357668949869864}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1279,7 +1283,8 @@ MonoBehaviour:
         m_MethodName: SpawnUnit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 6014288322611724604, guid: 901ff43e459f57a43802c897bae69259,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

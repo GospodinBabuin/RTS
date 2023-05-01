@@ -1,20 +1,28 @@
 using UnityEngine;
 
-public abstract class Building : MonoBehaviour
+namespace Buildings
 {
-    protected BuildingMenu MenuManager;
-
-    [SerializeField] private int maxHealth;
-    protected int currentHealth;
-
-    [SerializeField] private Transform unintSpawnPosition;
-    public Transform UnitSpawnPosition => unintSpawnPosition;
-
-    private void Start()
+    public abstract class Building : MonoBehaviour
     {
-        MenuManager = GameObject.FindWithTag("MenuManager").GetComponent<BuildingMenu>();
-        currentHealth = maxHealth;
-    }
+        private Player _owner;
+        
+        protected BuildingMenu MenuManager;
+        [SerializeField] private bool canOpenMenu;
+
+        [SerializeField] private int maxHealth;
+        protected int currentHealth;
+
+        [SerializeField] private Transform unintSpawnPosition;
+        public Transform UnitSpawnPosition => unintSpawnPosition;
+        public bool CanOpenMenu => canOpenMenu;
+        public Player Owner => _owner;
+        
+        private void Start()
+        {
+            MenuManager = GameObject.FindWithTag("MenuManager").GetComponent<BuildingMenu>();
+            currentHealth = maxHealth;
+        }
     
-    public abstract void ActivateMenu();
+        public abstract void ActivateMenu();
+    }
 }

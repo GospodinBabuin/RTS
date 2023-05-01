@@ -1,22 +1,26 @@
+using Buildings;
 using UnityEngine;
 
 namespace GridPlacement
 {
     public class RemovingState : IBuildingState
     {
-        private int _gameObjectIndex = -1;
         private Grid _grid;
         private PreviewSystem _previewSystem;
         private GridData _buildingData;
+        private GridData _massData;
         private ObjectPlacer _objectPlacer;
+        private PlacementSystem _placementSystem;
 
         public RemovingState(Grid grid, PreviewSystem previewSystem,
-            GridData buildingData, ObjectPlacer objectPlacer)
+            GridData buildingData, GridData massData, ObjectPlacer objectPlacer, PlacementSystem placementSystem)
         {
             _grid = grid;
             _previewSystem = previewSystem;
             _buildingData = buildingData;
             _objectPlacer = objectPlacer;
+            _massData = massData;
+            _placementSystem = placementSystem;
             
             _previewSystem.StartShowingRemovePreview();
         }
@@ -28,30 +32,44 @@ namespace GridPlacement
 
         public void OnAction(Vector3Int gridPosition)
         {
-            if (_buildingData == null)
+            GridData selectedData = null;
+            if (!_buildingData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
+            {
+                selectedData = _buildingData;
+            }
+            else if (!_massData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
+            {
+                selectedData = _massData;
+            }
+            if (selectedData == null)
             {
                 //sound
             }
             else
             {
-                _gameObjectIndex = _buildingData.GetRepresentationIndex(gridPosition);
+                int gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
 
-                if (_gameObjectIndex == -1)
+                if (gameObjectIndex <= -1 + _placementSystem.BasePositions.Length + _placementSystem.MassPositions.Length)
                     return;
 
-                _buildingData.RemoveObjectAt(gridPosition);
-                _objectPlacer.RemoveObjectAy(_gameObjectIndex);
+                selectedData.RemoveObjectAt(gridPosition);
+                _objectPlacer.RemoveObjectAy(gameObjectIndex);
             }
 
             Vector3 cellPosition = _grid.CellToWorld(gridPosition);
-            _previewSystem.UpdatePosition(cellPosition,
-                !_buildingData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
+            _previewSystem.UpdatePosition(cellPosition, CheckIfSelectionIsValid(gridPosition));
         }
 
         public void UpdateState(Vector3Int gridPosition)
         {
             _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition),
-                !_buildingData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
+                CheckIfSelectionIsValid(gridPosition));
+        }
+
+        private bool CheckIfSelectionIsValid(Vector3Int gridPosition)
+        {
+            return !(_buildingData.CanPlaceObjectAt(gridPosition, Vector2Int.one) &&
+                     _massData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
         }
     }
 }

@@ -1,8 +1,11 @@
 
-public class Factory : Building
+namespace Buildings
 {
-    public override void ActivateMenu()
+    public class Factory : Building
     {
-        MenuManager.OpenMenu(MenuManager.FactoryMenu, this);
+        public override void ActivateMenu()
+        {
+            MenuManager.OpenMenu(MenuManager.FactoryMenu, this);
+        }
     }
 }

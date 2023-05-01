@@ -1,4 +1,6 @@
+using Buildings;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -9,6 +11,10 @@ public class Player : MonoBehaviour
     
     private Unit _selectedUnit;
     private Building _selectedBuilding;
+
+    private Bank _bank = new Bank();
+    public Bank Bank => _bank;
+
 
     private void Awake()
     {
@@ -36,7 +42,9 @@ public class Player : MonoBehaviour
                 _selectedBuilding = hitData.transform.gameObject.GetComponent<Building>();
                 _selectedUnit = null;
                 
-                _selectedBuilding.ActivateMenu();
+                if (_selectedBuilding.CanOpenMenu)
+                    _selectedBuilding.ActivateMenu();
+                
                 return;
             }
 
@@ -45,8 +53,6 @@ public class Player : MonoBehaviour
                 _selectedUnit.SelectNewPosition(hitData.point);
             }
         }
-        
-        
     }
 
     private void DeselectObject()

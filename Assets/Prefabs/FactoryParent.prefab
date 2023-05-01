@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b749056502a6cc00a04db17b1ece4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canOpenMenu: 1
   maxHealth: 20
   unintSpawnPosition: {fileID: 4617872057548472248}
 --- !u!65 &4886392964587765458

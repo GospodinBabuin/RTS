@@ -88,3 +88,13 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 5, y: 5}
     <Prefab>k__BackingField: {fileID: 7410168804212085663, guid: 14ae81cbc75494016b0db0141fe16a4e,
       type: 3}
+  - <Name>k__BackingField: Headquarters
+    <ID>k__BackingField: 15
+    <Size>k__BackingField: {x: 10, y: 10}
+    <Prefab>k__BackingField: {fileID: 6822919873070779549, guid: 41b85d5be62e6621c91571101b84551f,
+      type: 3}
+  - <Name>k__BackingField: Mass
+    <ID>k__BackingField: 16
+    <Size>k__BackingField: {x: 5, y: 5}
+    <Prefab>k__BackingField: {fileID: 7848608256540336087, guid: 201275ef9bd98e938be0da1ea0a3cd3b,
+      type: 3}

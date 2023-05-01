@@ -1,3 +1,5 @@
+using Buildings;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -52,6 +54,18 @@ namespace GridPlacement
                 renderer.materials = materials;
                 renderer.shadowCastingMode = ShadowCastingMode.Off;
             }
+
+            Collider[] colliders = previewObject.GetComponents<Collider>();
+            foreach (Collider col in colliders)
+            {
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    col.enabled = false;
+                }
+            }
+            
+            if (previewObject.GetComponent<Building>())
+                previewObject.GetComponent<Building>().enabled = false;
         }
     
         private void PrepareCursor(Vector2Int size)

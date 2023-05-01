@@ -44,7 +44,21 @@ namespace GridPlacement
 
             foreach (Vector3Int pos in positionToOccupy)
             {
-                if (_placedObjects.ContainsKey(pos)) return false;
+                if (_placedObjects.ContainsKey(pos)) 
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool CanPlaceMassExtractorAt(Vector3Int gridPosition, Vector2Int objectSize)
+        {
+            List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
+
+            foreach (Vector3Int pos in positionToOccupy)
+            {
+                if (!_placedObjects.ContainsKey(pos)) 
+                    return false;
             }
 
             return true;
@@ -54,7 +68,7 @@ namespace GridPlacement
         {
             if (!_placedObjects.ContainsKey(gridPosition))
                 return -1;
-
+            
             return _placedObjects[gridPosition].PlacedObjectIndex;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace GridPlacement
@@ -12,6 +13,7 @@ namespace GridPlacement
         [SerializeField] private GameObject gridVisualization;
 
         private GridData _buildingData;
+        private GridData _massData;
         
         private PreviewSystem _preview;
 
@@ -23,6 +25,13 @@ namespace GridPlacement
 
         private IBuildingState _buildingState;
 
+        [SerializeField] private Vector3Int[] _basePositions;
+        [HideInInspector] public Vector3Int[] BasePositions => _basePositions;
+
+        [SerializeField] private Vector3Int[] _massPositions;
+        [HideInInspector] public Vector3Int[] MassPositions => _massPositions;
+        [SerializeField] private GameObject _massIndicator;
+
         private void Awake()
         {
             GameObject parent = transform.parent.gameObject;
@@ -33,8 +42,37 @@ namespace GridPlacement
             _objectPlacer = parent.GetComponentInChildren<ObjectPlacer>();
 
             _buildingData = new GridData();
+            _massData = new GridData();
             
             StopPlacement();
+        }
+
+        private void Start()
+        {
+            gridVisualization.SetActive(true);
+            
+            _buildingState = new PlacementState(15, _grid, _preview,
+                database, _buildingData, _massData, _objectPlacer);
+
+            for (int i = 0; i < _basePositions.Length; i++)
+            {
+                _buildingState.OnAction(_basePositions[i]);
+            }
+            
+            _buildingState = new PlacementState(16, _grid, _preview,
+                database, _buildingData, _massData, _objectPlacer);
+
+            for (int i = 0; i < _massPositions.Length; i++)
+            {
+                _buildingState.OnAction(_massPositions[i]);
+            }
+            
+            gridVisualization.SetActive(false);
+            
+            _buildingState.EndState();
+
+            _lastDetectedPosition = Vector3Int.zero;
+            _buildingState = null;
         }
 
         private void Update()
@@ -56,7 +94,7 @@ namespace GridPlacement
             gridVisualization.SetActive(true);
             
             _buildingState = new PlacementState(id, _grid, _preview,
-                database, _buildingData, _objectPlacer);
+                database, _buildingData, _massData, _objectPlacer);
             
             _inputManager.OnClicked += PlaceStructure;
             _inputManager.OnExit += StopPlacement;
@@ -68,7 +106,7 @@ namespace GridPlacement
             gridVisualization.SetActive(true);
             
             _buildingState = new RemovingState(_grid, _preview,
-                _buildingData, _objectPlacer);
+                _buildingData, _massData, _objectPlacer, this);
             
             _inputManager.OnClicked += PlaceStructure;
             _inputManager.OnExit += StopPlacement;
