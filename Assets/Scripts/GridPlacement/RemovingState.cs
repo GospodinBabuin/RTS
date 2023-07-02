@@ -49,7 +49,7 @@ namespace GridPlacement
             {
                 int gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
 
-                if (gameObjectIndex <= -1 + _placementSystem.BasePositions.Length + _placementSystem.MassPositions.Length)
+                if (gameObjectIndex <= -1)
                     return;
 
                 selectedData.RemoveObjectAt(gridPosition);

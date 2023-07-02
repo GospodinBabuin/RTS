@@ -25,11 +25,6 @@ namespace GridPlacement
 
         private IBuildingState _buildingState;
 
-        [SerializeField] private Vector3Int[] _basePositions;
-        [HideInInspector] public Vector3Int[] BasePositions => _basePositions;
-
-        [SerializeField] private Vector3Int[] _massPositions;
-        [HideInInspector] public Vector3Int[] MassPositions => _massPositions;
         [SerializeField] private GameObject _massIndicator;
 
         private void Awake()
@@ -49,24 +44,6 @@ namespace GridPlacement
 
         private void Start()
         {
-            gridVisualization.SetActive(true);
-            
-            _buildingState = new PlacementState(15, _grid, _preview,
-                database, _buildingData, _massData, _objectPlacer);
-
-            for (int i = 0; i < _basePositions.Length; i++)
-            {
-                _buildingState.OnAction(_basePositions[i]);
-            }
-            
-            _buildingState = new PlacementState(16, _grid, _preview,
-                database, _buildingData, _massData, _objectPlacer);
-
-            for (int i = 0; i < _massPositions.Length; i++)
-            {
-                _buildingState.OnAction(_massPositions[i]);
-            }
-            
             gridVisualization.SetActive(false);
             
             _buildingState.EndState();
